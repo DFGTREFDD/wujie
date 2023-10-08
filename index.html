@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ͼƬ�ֲ�</title>
+    <style>
+      .slideshow {
+        position: relative;
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+      }
+      .slideshow img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .slideshow img:first-child {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slideshow">
+      <img id="img1" src=image\4.webp alt="Image 1">
+      <img id="img2" src=image\5.webp alt="Image 2">
+      <img id="img3" src=image\6.webp alt="Image 3">
+    </div>
+    <script>
+      const slideshow = document.querySelector('.slideshow');
+      const images = document.querySelectorAll('.slideshow img');
+      let currentImage = 0;
+      function showImage(index) {
+        images[index].style.opacity = 1;
+        images[index].classList.add('active');
+      }
+      function hideImage(index) {
+        images[index].style.opacity = 0;
+        images[index].classList.remove('active');
+      }
+      function nextImage() {
+        hideImage(currentImage);
+        currentImage = (currentImage + 1) % images.length;
+        showImage(currentImage);
+      }
+      setInterval(() => {
+        nextImage();
+      }, 3000);
+    </script>
+  </body>
+</html>
